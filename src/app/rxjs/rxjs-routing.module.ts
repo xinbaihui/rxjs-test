@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '', 
     component: RxjsComponent
   },
-  { 
-    path: 'join-creation',
-    component: JoinCreationComponent
-  }
 ];
 
 @NgModule({
