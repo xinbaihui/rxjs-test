@@ -1,12 +1,18 @@
 <div>
   This is parent.
   <br>
-  <!--Multi-slot content projection-->
+  <div>---------Multi-slot content projection--------------------------</div>
   <app-child-a>
     <div>This is default content 1.</div>
     <p>This is a p tag.</p>
     <div class="age">Age: 3</div>
     <div name>My name is Joey.</div>
+    <!--This works too. So why use ngProjectAs ??-->
+    <!--https://stackoverflow.com/questions/58574322/when-should-i-use-ngprojectas-attribute 还是可以不用也， 不明白-->
+    <ng-container name>
+      <div>My name is Joey2.</div>
+      <div>My name is Joey3.</div>
+    </ng-container>
     <div>This is default content 2.</div>
   </app-child-a>
 
@@ -15,7 +21,8 @@
     <span>example test</span>
   </app-child-a> -->
 
-  <div>--------------------------------------------</div>
+  <br>
+  <div>---------Conditional content projectionMulti-slot content projection--------------------------</div>
 
   <!--If your component needs to conditionally render content, or render content multiple times,
    you should configure that component to accept an <ng-template> element
@@ -28,4 +35,14 @@
       by using either the @ContentChild or @ContentChildren decorators.-->
     <ng-template appExampleZippyContent>Hi Conditional content projection!</ng-template>
   </app-child-b>
+
+  <br>
+  <div>---------Projecting content in more complex environments--------------------------</div>
+  <!--In some cases, you might want to project content as a different element. For example,
+   the content you want to project might be a child of another element. Accomplish this with the ngProjectAs attribute-->
+  <app-child-a>
+    <ng-container ngProjectAs="name">
+      <div>My name is complex Joey!</div>
+    </ng-container>
+  </app-child-a>
 </div>
