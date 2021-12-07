@@ -15,11 +15,17 @@
     <span>example test</span>
   </app-child-a> -->
 
+  <div>--------------------------------------------</div>
+
   <!--If your component needs to conditionally render content, or render content multiple times,
    you should configure that component to accept an <ng-template> element
   that contains the content you want to conditionally render.-->
+
   <!--Conditional content projection-->
   <app-child-b>
-    <ng-template appExampleZippyComponent>Hi there!</ng-template>
+    <!--The <ng-template> element defines a block of content that a component can render based on its own logic.
+      A component can get a reference to this template content, or TemplateRef,
+      by using either the @ContentChild or @ContentChildren decorators.-->
+    <ng-template appExampleZippyContent>Hi Conditional content projection!</ng-template>
   </app-child-b>
 </div>

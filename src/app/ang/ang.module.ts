@@ -4,7 +4,7 @@ import { AngRoutingModule } from './ang-routing.module';
 import { AngMainComponent } from './ang-main.component';
 import { ChildAComponent } from './ang-ng-content/child-a/child-a.component';
 import { AngNgContentComponent } from './ang-ng-content/ang-ng-content.component';
-import { ChildBComponent } from './ang-ng-content/child-b/child-b.component';
+import { ChildBComponent, ZippyContentDirective } from './ang-ng-content/child-b/child-b.component';
 
 
 
@@ -14,6 +14,7 @@ import { ChildBComponent } from './ang-ng-content/child-b/child-b.component';
     AngNgContentComponent,
     ChildAComponent,
     ChildBComponent,
+    ZippyContentDirective
   ],
   imports: [
     CommonModule,
