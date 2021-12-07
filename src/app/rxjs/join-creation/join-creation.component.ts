@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, concat, forkJoin, interval, merge, partition, race, zip } from 'rxjs';
+import { combineLatest, concat, forkJoin, interval, merge, of, partition, race, zip } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 @Component({

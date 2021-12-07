@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'rxjs',
     loadChildren: () => import('./rxjs/rxjs.module').then((m) => m.RxjsModule),
   },
+  {
+    path: 'ang',
+    loadChildren: () => import('./ang/ang.module').then((m) => m.AngModule),
+  },
 ];
 
 @NgModule({

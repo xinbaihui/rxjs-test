@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import { Subject, timer } from 'rxjs';
-import { mapTo, pluck, share, shareReplay, tap } from 'rxjs/operators';
+import { Subject, ReplaySubject, interval } from 'rxjs';
+import { mapTo, pluck, share, shareReplay, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-subject',
@@ -18,35 +17,26 @@ export class SubjectComponent implements OnInit {
   // share: 用来避免重复副作用的
   shareTest() {
     // 1秒后发出值 0 (timer is cold stream, 每次订阅都会产生全新的数据流)
-    const source = timer(1000);
+    const source = interval(1000).pipe(take(3));
     // 输出副作用，然后发出结果
     const example = source.pipe(
       tap(() => console.log('***SIDE EFFECT***')),
-      mapTo('***RESULT***')
+      // mapTo('***RESULT***')
     );
 
-    /*
-      ***不共享的话，副作用会执行两次***
-      输出: 
-      "***SIDE EFFECT***"
-      "***RESULT***"
-      "***SIDE EFFECT***"
-      "***RESULT***"
-    */
-    const subscribe = example.subscribe(val => console.log(val));
-    const subscribeTwo = example.subscribe(val => console.log(val));
+    // 不共享的话，副作用会执行两次***
+    // example.subscribe(val => console.log('1:'+ val));
+    // setTimeout(() => {
+    //   example.subscribe(val => console.log('2:'+ val));
+    // }, 1500)
 
     // 在多个订阅者间共享 observable
     const sharedExample = example.pipe(share());
-    /*
-      ***共享的话，副作用只执行一次***
-      输出:
-      "***SIDE EFFECT***"
-      "***RESULT***"
-      "***RESULT***"
-    */
-    const subscribeThree = sharedExample.subscribe(val => console.log(val));
-    const subscribeFour = sharedExample.subscribe(val => console.log(val));
+    // 共享的话，副作用只执行一次***（后订阅者订阅的时候如果数据流完结了，那就无法避免副作用了，数据流会重新产生一次)
+    sharedExample.subscribe(val => console.log('3:'+ val));
+    setTimeout(() => {
+      sharedExample.subscribe(val => console.log('4:'+ val))
+    }, 5000);
   }
 
   // https://rxjs-cn.github.io/learn-rxjs-operators/operators/multicasting/sharereplay.html

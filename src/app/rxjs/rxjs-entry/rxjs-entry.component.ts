@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 
 @Component({
-  selector: 'app-rxjs',
-  templateUrl: './rxjs.component.html',
-  styleUrls: ['./rxjs.component.scss']
+  selector: 'app-rxjs-entry',
+  templateUrl: './rxjs-entry.component.html',
+  styleUrls: ['./rxjs-entry.component.scss']
 })
-export class RxjsComponent implements OnInit {
+export class RxjsEntryComponent implements OnInit {
 
   constructor() { }
 
@@ -44,11 +44,5 @@ export class RxjsComponent implements OnInit {
       subscription.unsubscribe();
     }, 3500)
   }
-
-  showTimer() {
-    timer(1000).subscribe((val) => {
-      console.log(val)
-    })
-  }
-
 }
+
