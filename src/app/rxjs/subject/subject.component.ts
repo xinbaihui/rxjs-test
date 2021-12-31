@@ -12,6 +12,7 @@ export class SubjectComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('for test');
   }
 
   // share: 用来避免重复副作用的
