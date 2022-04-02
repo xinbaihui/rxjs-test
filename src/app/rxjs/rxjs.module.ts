@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { JoinCreationComponent } from './join-creation/join-creation.component';
 import { RxjsRoutingModule } from './rxjs-routing.module';
 import { SubjectComponent } from './subject/subject.component';
-import { RxjsEntryComponent } from './rxjs-entry/rxjs-entry.component';
+import { RxjsEntryComponent } from './rxjs-entry.component';
 
 
 
