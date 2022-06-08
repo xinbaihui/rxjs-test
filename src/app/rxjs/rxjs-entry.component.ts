@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, timer } from 'rxjs';
+import { iif, Observable, of, timer } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs-entry',
@@ -11,38 +11,32 @@ export class RxjsEntryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // defination
-    const onSubscribe = (observer: any) => {
-      let i = 1;
-      const handle = setInterval(() => {
-        console.log('create data i:' + i);
-        observer.next(i++);
-        // if(i>3) {
-        //   observer.complete()                                      ;
-        // }
-      }, 1000);
-      // observer.error("Error");
-      // observer.complete();
-      return {
-        unsubscribe: () => {
-          clearInterval(handle);
-        }
-      }
-    }
+    let accessGranted = false;
+    const observableIfYouHaveAccess = iif(
+      () => accessGranted,
+      of('It seems you have an access...'), // Note that only one Observable is passed to the operator.
+      );
     
-    const source$ = new Observable(onSubscribe);
+    accessGranted = true;
+    observableIfYouHaveAccess.subscribe(
+      value => console.log(value),
+      err => {},
+      () => console.log('The end'),
+    );
     
-    const observer = {
-      next: (val: any) => console.log(val),
-      error: (err: any) => console.log(err),
-      complete: () => console.log("No more data")
-    }
+    // Logs:
+    // "It seems you have an access..."
+    // "The end"
     
-    const subscription = source$.subscribe(observer);
-
-    setTimeout(() => {
-      subscription.unsubscribe();
-    }, 3500)
+    accessGranted = false;
+    observableIfYouHaveAccess.subscribe(
+      value => console.log(value),
+      err => {},
+      () => console.log('The end'),
+    );
+    
+    // Logs:
+    // "The end"
   }
 }
 

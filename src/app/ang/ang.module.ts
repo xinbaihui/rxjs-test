@@ -5,6 +5,7 @@ import { AngMainComponent } from './ang-main.component';
 import { ChildAComponent } from './ang-ng-content/child-a/child-a.component';
 import { AngNgContentComponent } from './ang-ng-content/ang-ng-content.component';
 import { ChildBComponent, ZippyContentDirective } from './ang-ng-content/child-b/child-b.component';
+import { NgContentChildrenComponent, Pane, Tab } from './ng-content-children/ng-content-children.component';
 
 
 
@@ -14,7 +15,10 @@ import { ChildBComponent, ZippyContentDirective } from './ang-ng-content/child-b
     AngNgContentComponent,
     ChildAComponent,
     ChildBComponent,
-    ZippyContentDirective
+    ZippyContentDirective,
+    NgContentChildrenComponent,
+    Tab,
+    Pane
   ],
   imports: [
     CommonModule,

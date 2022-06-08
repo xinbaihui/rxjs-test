@@ -42,7 +42,7 @@ export class SubjectComponent implements OnInit {
   // https://rxjs-cn.github.io/learn-rxjs-operators/operators/multicasting/sharereplay.html
   // 如果深入源码，我们可以发现两者之间使用的技术是类似的。
   // 当订阅发生后，shareReplay 会订阅源 observable，并通过内部的 ReplaySubject 来发送值:
-  shareReplayTest() {
+  shareReplayTest() { 
     // 使用 subject 模拟 url 的变化
     const routeEnd = new Subject<{data: any, url: string}>();
 
